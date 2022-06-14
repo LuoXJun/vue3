@@ -6,15 +6,8 @@
       :list="list"
       :options="options"
       @remove="fileRemove"
-      @auto-upload="autoUpload"
-    >
-      <span class="el-button el-button--primary">上传文件</span>
-      <template #uploadBtn="scope">
-        <el-button type="primary" @click="upload(scope.formData)">
-          批量上传
-        </el-button>
-      </template>
-    </base-upload-vue>
+      @upload="uploadFile"
+    ></base-upload-vue>
   </div>
 </template>
 
@@ -22,7 +15,6 @@
 import { ref } from 'vue'
 import baseUploadVue from '@/components/base-upload/base-upload.vue'
 import { ILimit, IOptions, IList } from '@/components/base-upload/config/config'
-import type { UploadUserFile } from 'element-plus'
 
 const uploadRef = ref()
 const limit: ILimit = {
@@ -43,7 +35,6 @@ const list = ref<IList[]>([
 
 const options: IOptions = {
   name: 'file',
-  autoUpload: true,
   multiple: true
 }
 
@@ -54,13 +45,23 @@ const fileRemove = (file: any) => {
   console.log(file)
 }
 
-const autoUpload = (file: UploadUserFile) => {
-  // 每次添加文件后在此调用单文件上传接口
-  console.log(file)
-}
-
-const upload = (value: any) => {
-  console.log(value)
+// 上传
+const uploadFile = (fileObj: any) => {
+  console.log(fileObj)
+  // // 构建上传文件数据
+  // let formData = new FormData()
+  // fileList.value.forEach((item) => {
+  //   if (item.raw) {
+  //     // 未上传服务端的文件  ===   父组件返回的服务端地址（无需再次上传）
+  //     formData.append(
+  //       props.options.name,
+  //       new File(
+  //         [item.raw],
+  //         item.name.replace(/\s*/g, '').replace(/\(|\)/g, '')
+  //       )
+  //     )
+  //   }
+  // })
 }
 </script>
 

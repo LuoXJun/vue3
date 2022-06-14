@@ -48,6 +48,7 @@ interface Iother {
 // 单个表单元素属性
 export interface IformItem {
   // 通用
+  prop: string | string[]
   value: string | number
   label: string
   type: itemType

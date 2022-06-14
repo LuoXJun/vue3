@@ -35,6 +35,7 @@ import baseFormVue from '@/components/base-form/baseForm.vue'
 import baseCardVue from '@/components/base-card/baseCard.vue'
 import paginationVue from '@/components/pagination/pagination.vue'
 import { formItemList } from './config/config'
+import { getListApi } from '@/api/test/index'
 const baseFormRef = ref()
 const modelValue = ref({
   myInput: 123
@@ -45,11 +46,18 @@ const pageInfo = ref({
   currentPage: 1
 })
 
-const searchData = () => {
+const searchData = async () => {
   baseFormRef.value.validate().then((res: boolean) => {
     console.log(res)
     console.log({ ...modelValue.value, ...pageInfo.value })
   })
+
+  // 测试封装的请求
+  const data = await getListApi({
+    pageIndex: 1,
+    pageSize: 10
+  })
+  console.log(data)
 }
 
 // 重置

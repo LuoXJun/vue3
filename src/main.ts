@@ -7,7 +7,7 @@ import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import { Boot } from '@wangeditor/editor'
 import attachmentModule from '@wangeditor/plugin-upload-attachment'
-// 注册上传插件，在页面中注册会导致页面刷新后重复注册的问题
+// 注册wangeditor上传插件，在页面中注册会导致页面刷新后重复注册的问题
 Boot.registerModule(attachmentModule)
 const app = createApp(App)
 

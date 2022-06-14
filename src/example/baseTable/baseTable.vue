@@ -9,8 +9,8 @@
       @selected="selected"
     >
       <template #operation="scope">
-        <el-button type="text" @click="edit(scope.row)">编辑</el-button>
-        <el-button type="text">删除</el-button>
+        <el-button type="primary" link @click="edit(scope.row)">编辑</el-button>
+        <el-button type="primary" link>删除</el-button>
       </template>
     </baseTableVue>
   </div>
@@ -19,6 +19,7 @@
 <script setup lang="ts">
 import baseTableVue from '@/components/base-table/base-table.vue'
 import { tableColumn, options } from './config/config'
+import { Ianykey } from '@/components/base-table/config/config'
 
 const tableData = [
   {
@@ -38,13 +39,22 @@ const selected = (value: any) => {
 const edit = (row: any) => {
   console.log(row)
 }
-const headerCellStyle = ({ row, column, rowIndex, columnIndex }: any) => {
+const headerCellStyle = (data: {
+  row: any
+  column: any
+  rowIndex: number
+  columnIndex: number
+}): Ianykey => {
   // 表头背景色更改
-  if (rowIndex == 0) return { color: '', backgroundColor: '#909090' }
+  console.log(data)
+  if (data.rowIndex == 0) return { color: '', backgroundColor: 'red' }
+  return {}
 }
-const rowStyle = ({ row, rowIndex }: any) => {
+const rowStyle = (data: { row: any; rowIndex: number }): Ianykey => {
   // 表头背景色更改 === 使用fixed的行不会被修改
-  if (row.name == 'lxj') return { color: 'red', background: '#909090' }
+  console.log(data)
+  if (data.row.name == 'lxj') return { color: 'red', background: '#909090' }
+  return {}
 }
 </script>
 

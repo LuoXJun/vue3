@@ -3,7 +3,9 @@ export interface ITable {
   select?: boolean
   index?: boolean
 }
-
+export interface Ianykey {
+  [key: string | number]: string
+}
 export interface ITableColumn {
   // 同时是使用的slot插槽名称
   property: string

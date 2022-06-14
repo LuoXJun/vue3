@@ -69,6 +69,42 @@ export const routes: Array<RouteRecordRaw> = [
           parent: 'index'
         },
         component: () => import('@/example/baseUpload/baseUpload.vue')
+      },
+      {
+        path: 'v-viewer',
+        name: 'v-viewer',
+        meta: {
+          title: 'v-viewer',
+          parent: 'index'
+        },
+        component: () => import('@/example/v-viewer/v-viewer.vue')
+      },
+      {
+        path: 'mitt',
+        name: 'mitt',
+        meta: {
+          title: 'mitt',
+          parent: 'index'
+        },
+        component: () => import('@/example/mitt/base_mitt.vue')
+      },
+      {
+        path: 'pinia',
+        name: 'pinia',
+        meta: {
+          title: 'pinia',
+          parent: 'index'
+        },
+        component: () => import('@/example/pinia/base_pinia.vue')
+      },
+      {
+        path: 'baseList',
+        name: 'baseList',
+        meta: {
+          title: 'baseList',
+          parent: 'index'
+        },
+        component: () => import('@/example/baseList/base_list.vue')
       }
     ]
   }

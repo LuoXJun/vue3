@@ -32,7 +32,8 @@ export default defineConfig({
     // 设置 https 代理
     proxy: {
       '^/dev': {
-        target: '',
+        target: 'http://192.168.31.120:8088',
+        secure: false,
         changeOrigin: true,
         rewrite: (path: string) => path.replace(/^\/dev/, '')
       }

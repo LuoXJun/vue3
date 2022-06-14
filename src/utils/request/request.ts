@@ -2,22 +2,18 @@ import axios from 'axios'
 import type { AxiosInstance } from 'axios'
 import type { MuRequestConfig, MuRequestInterceptors } from './type'
 
-import { ElLoading } from 'element-plus'
-
 class MuRequest {
   instance: AxiosInstance
+  // 当前实例拦截器
   interceptors?: MuRequestInterceptors
-  loadingServer?: ReturnType<typeof ElLoading.service>
 
   constructor(config: MuRequestConfig) {
     this.instance = axios.create(config)
-    // 获取到实例化传递得拦截器
     this.interceptors = config.interceptors
 
-    // 添加共有响应拦截
+    // 基础响应拦截
     this.addResponse()
 
-    // 使用实例化传递的拦截器
     this.instance.interceptors.request.use(
       this.interceptors?.requestInterceptor,
       this.interceptors?.requestInterceptorCatch
@@ -27,7 +23,7 @@ class MuRequest {
       this.interceptors?.responseInterceptorCatch
     )
 
-    // 添加共有请求拦截
+    // 基础请求拦截
     this.addRequest()
   }
 

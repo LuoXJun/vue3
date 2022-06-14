@@ -6,6 +6,7 @@
       :default-config="toolbarConfig"
       :mode="mode"
     />
+    <slot></slot>
     <Editor
       v-model="valueHtml"
       class="lxj-editor"
@@ -69,7 +70,7 @@ if (editorConfig.MENU_CONF) {
 // 编辑器实例，必须用 shallowRef
 const editorRef = shallowRef()
 // 内容 HTML
-const valueHtml = ref('<div>55</div>')
+const valueHtml = ref('<div></div>')
 const mode = 'default'
 
 const handleCreated = (editor: IDomEditor) => {
@@ -104,7 +105,6 @@ const customPaste = (
   // callback(true)
 }
 
-// 组件销毁时，也及时销毁编辑器
 onBeforeUnmount(() => {
   if (editorRef.value == null) return
   editorRef.value.destroy()

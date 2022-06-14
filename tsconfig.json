@@ -15,9 +15,11 @@
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
+    "skipDefaultLibCheck": false,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "baseUrl": "./",
+    "types": ["node", "axios", "element-plus/global"],
     "paths": {
       "@": ["src"],
       "@/*": ["src/*"]

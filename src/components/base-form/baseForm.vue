@@ -15,7 +15,7 @@
           <el-form-item
             :label="item.label"
             :label-width="item.labelWidth"
-            :prop="item.value"
+            :prop="item.prop"
             :rules="item.rules"
           >
             <template v-if="item.type == 'input' || item.type == 'password'">

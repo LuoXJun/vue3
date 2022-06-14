@@ -10,8 +10,6 @@ interface ILimit {
 interface IOptions {
   // formData.append时的名字，并非是文件名
   name: string
-  //是否自动上传(该自动上传不是element组件中的自动上传)
-  autoUpload: boolean
   //是否支持多选
   multiple: boolean
 }

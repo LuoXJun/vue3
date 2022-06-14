@@ -1,15 +1,5 @@
 <template>
   <div class="base-upload">
-    <div class="upload-button-group">
-      <!-- 选择文件 -->
-      <label for="upload">
-        <slot></slot>
-      </label>
-      <!-- 将当前表单文件传到父组件 -->
-      <div class="uploadBtn">
-        <slot name="uploadBtn" :form-data="uploadFile()"></slot>
-      </div>
-    </div>
     <el-upload
       ref="upload"
       :auto-upload="false"
@@ -21,10 +11,9 @@
       :before-remove="beforeRemove"
       :multiple="options.multiple"
       :file-list="fileList"
-      :http-request="uploadFile"
       :on-preview="preview"
     >
-      <el-button id="upload">选择文件</el-button>
+      <el-button type="primary" link>选择文件</el-button>
     </el-upload>
   </div>
   <el-dialog v-model="fileDialogVisiable" width="80%" append-to-body top="0vh">
@@ -37,7 +26,7 @@ import { ref, PropType } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import type { UploadProps, UploadUserFile } from 'element-plus'
 import { ILimit, IOptions, IList, TListType } from './config/config'
-const emits = defineEmits(['remove', 'autoUpload', 'upload'])
+const emits = defineEmits(['remove', 'upload'])
 const props = defineProps({
   // 后端返回的图片地址（用于回显并点击预览）
   list: {
@@ -109,10 +98,8 @@ const fileListChange: UploadProps['onChange'] = (file, list) => {
     list.pop()
   }
 
-  // 开启自动上传后每次添加文件都返回该文件给父组件处理
-  if (props.options.autoUpload) {
-    emits('autoUpload', file)
-  }
+  // 每次添加文件都返回该文件给父组件处理
+  emits('upload', { file, list })
 }
 
 const beforeRemove: UploadProps['beforeRemove'] = (file) => {
@@ -152,27 +139,7 @@ const preview: UploadProps['onPreview'] = (file) => {
   fileDialogVisiable.value = true
 }
 
-// 上传
-const uploadFile = () => {
-  // 构建上传文件数据
-  let formData = new FormData()
-  fileList.value.forEach((item) => {
-    if (item.raw) {
-      // 未上传服务端的文件  ===   父组件返回的服务端地址（无需再次上传）
-      formData.append(
-        props.options.name,
-        new File(
-          [item.raw],
-          item.name.replace(/\s*/g, '').replace(/\(|\)/g, '')
-        )
-      )
-    }
-  })
-  if (formData.get(props.options.name)) return formData
-  return null
-}
-
-// 点击删除后传递当前file给父组件，父组件在服务端删除改文件，删除成功后调用该方法删除列表中的该文件
+// 点击删除后传递当前file给父组件，父组件在服务端删除该文件，删除成功后调用该方法删除列表中的该文件
 const deleteFile = (file: UploadUserFile) => {
   fileList.value.splice(fileList.value.indexOf(file), 1)
 }
@@ -180,20 +147,4 @@ const deleteFile = (file: UploadUserFile) => {
 defineExpose({ deleteFile })
 </script>
 
-<style lang="scss">
-.base-upload {
-  width: 100%;
-  .upload-button-group {
-    display: flex;
-    > div {
-      padding-left: 20px;
-    }
-  }
-  .upload-demo {
-    flex: 1;
-    .el-upload {
-      display: none;
-    }
-  }
-}
-</style>
+<style lang="scss"></style>

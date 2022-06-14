@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue'
-import { ITableColumn, ITable } from './config/config'
+import { ITableColumn, ITable, Ianykey } from './config/config'
 const emits = defineEmits(['selected'])
 defineProps({
   tableData: {
@@ -60,11 +60,20 @@ defineProps({
     })
   },
   headerCellStyle: {
-    type: Function,
+    type: Function as PropType<
+      (data: {
+        row: any
+        rowIndex: number
+        column: any
+        columnIndex: number
+      }) => Ianykey
+    >,
     default: () => ({})
   },
   rowStyle: {
-    type: Function,
+    type: Function as PropType<
+      (data: { row: any; rowIndex: number }) => Ianykey
+    >,
     default: () => ({})
   }
 })

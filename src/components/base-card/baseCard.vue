@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue'
+type TShadow = 'hover' | 'always' | 'never'
 defineProps({
   title: {
     type: String,
@@ -25,7 +26,7 @@ defineProps({
     })
   },
   shadow: {
-    type: String,
+    type: String as PropType<TShadow>,
     default: () => 'never'
   }
 })
