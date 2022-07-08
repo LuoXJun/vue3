@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+// 默认使用路由
 import { routes } from './config/routes'
 
 const router = createRouter({

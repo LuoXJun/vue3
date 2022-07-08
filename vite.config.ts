@@ -10,7 +10,9 @@ export default defineConfig({
     //设置别名
     alias: {
       '@': path.resolve(__dirname, 'src')
-    }
+    },
+    // 导入时忽略的后缀名（默认值）
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
   },
   build: {
     minify: 'terser',
@@ -21,9 +23,16 @@ export default defineConfig({
       }
     }
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import '@/styles/index.scss';`
+      }
+    }
+  },
   server: {
-    host: '0.0.0.0',
-    port: 8080, //启动端口
+    host: true,
+    port: 3005, //启动端口
     // hmr: {
     //   host: '127.0.0.1',
     //   port: 8080

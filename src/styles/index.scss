@@ -48,13 +48,27 @@ body,
   border-radius: 10px;
 }
 
-.el-select,
-.el-input {
-  height: 36px;
-  width: 100% !important;
+// transparentize相减  opacify相加
+// 项目基本颜色
+$color: #000;
+$bgcolor: #fff;
+
+// elementPlus基本颜色
+$primary: #409eff;
+$danger: #f56c6c;
+$warning: #e6a23c;
+$success: #67c23a;
+$info: #909399;
+
+// display基本布局
+@mixin base-flex($justify: center, $wrap: wrap) {
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+  flex-wrap: $wrap;
 }
 
-.el-button {
-  height: 40px !important;
-  line-height: 40px;
+.el-select,
+.el-input {
+  width: 100% !important;
 }

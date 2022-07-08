@@ -42,6 +42,7 @@
 import { PropType } from 'vue'
 import { ITableColumn, ITable, Ianykey } from './config/config'
 const emits = defineEmits(['selected'])
+
 defineProps({
   tableData: {
     type: Array as PropType<object[]>,

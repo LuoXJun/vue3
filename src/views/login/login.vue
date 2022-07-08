@@ -6,6 +6,8 @@
 import { useRouter } from 'vue-router'
 const router = useRouter()
 sessionStorage.setItem('token', '123')
+
+// 模仿登录获取路由
 </script>
 
 <style scoped></style>

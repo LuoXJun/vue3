@@ -55,10 +55,8 @@ const props = defineProps({
     default: 'text'
   }
 })
-
-// 变量
 const fileList = ref<UploadUserFile[]>([])
-// 判断出入文件数量是否超过限制
+// 判断传入文件数量是否超过限制
 if (props.list.length > props.limit.numLimit!) {
   ElMessage.error('获取的文件数量超出文件列表长度长度限制')
 }

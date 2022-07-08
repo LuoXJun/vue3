@@ -1,6 +1,6 @@
 <template>
   <div class="base-v-viewer">
-    <div v-if="thumbnail.length > 0">
+    <div v-if="images.length > 0">
       <div class="v-main">
         <viewer
           :images="images"
@@ -33,19 +33,10 @@ interface Iimages {
   name: string
   url: string
 }
-interface IThumbnail {
-  ipageNo: string | number
-  url: string
-}
 defineProps({
   // 渲染的图片列表
   images: {
     type: Array as PropType<Iimages[]>,
-    default: () => []
-  },
-  //   左侧缩略图
-  thumbnail: {
-    type: Array as PropType<IThumbnail[]>,
     default: () => []
   },
   options: {

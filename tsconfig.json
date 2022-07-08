@@ -7,6 +7,7 @@
     // 将每个文件作为单独的模块
     "isolatedModules": true,
     "skipLibCheck": true,
+    "importHelpers": false,
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",

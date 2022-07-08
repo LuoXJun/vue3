@@ -1,30 +1,32 @@
-import { RouteRecordRaw } from 'vue-router'
-import routerReplace from '@/utils/tool/routerReplace'
+import { RouteRecordRaw, RouterView } from 'vue-router'
 export const routes: Array<RouteRecordRaw> = [
   {
-    path: '/login',
-    name: 'login',
-    meta: {
-      title: '登录'
-    },
-    component: () => import('@/views/login/login.vue')
+    path: '/:pathMatch(.*)',
+    redirect: '/404'
   },
   {
-    path: '/:pathMatch(.*)',
+    path: '/404',
     name: 'notFound',
-    meta: {
-      title: '404'
-    },
-    component: () => import('@/views/notFound/notFound.vue')
+    component: () => import('@/views/notFound/notfound.vue')
   },
   {
     path: '/',
     name: 'index',
+    redirect: '/layout',
     meta: {
-      title: '主页'
+      title: 'index'
     },
-    component: routerReplace(() => import('@/views/layout/layout.vue')),
+    component: RouterView,
     children: [
+      {
+        path: 'layout',
+        name: 'layout',
+        meta: {
+          title: 'layout',
+          parent: 'index'
+        },
+        component: () => import('@/views/layout/layout.vue')
+      },
       {
         path: 'wangEditor',
         name: 'wangEditor',

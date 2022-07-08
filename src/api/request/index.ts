@@ -38,8 +38,10 @@ const request = new BaseRequest({
             ? err.response.data?.message
             : err.response.data
         )
+      } else if (err.data) {
+        ElMessage.error(err.data?.message ? err.data?.message : err.data)
       } else {
-        ElMessage.error(err.message ? err.message : err.data)
+        ElMessage.error(err.status + ' ' + err.statusText)
       }
       throw new Error(err)
     }
